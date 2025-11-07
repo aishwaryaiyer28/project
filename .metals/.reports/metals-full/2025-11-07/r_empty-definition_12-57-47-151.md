@@ -1,6 +1,22 @@
+error id: file://<WORKSPACE>/simp/src/main/scala/sutd/compiler/simp/syntax/Parser.scala:`<none>`.
+file://<WORKSPACE>/simp/src/main/scala/sutd/compiler/simp/syntax/Parser.scala
+empty definition using pc, found symbol in pc: `<none>`.
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+	 -sutd/compiler/simp/syntax/Lexer.sutd.compiler.simp.syntax.Lexer.
+	 -sutd/compiler/simp/syntax/SrcLoc.sutd.compiler.simp.syntax.Lexer.
+	 -sutd/compiler/simp/syntax/AST.sutd.compiler.simp.syntax.Lexer.
+	 -sutd/compiler/simp/syntax/Parsec.sutd.compiler.simp.syntax.Lexer.
+	 -sutd/compiler/simp/syntax/Lexer.
+	 -scala/Predef.sutd.compiler.simp.syntax.Lexer.
+offset: 72
+uri: file://<WORKSPACE>/simp/src/main/scala/sutd/compiler/simp/syntax/Parser.scala
+text:
+```scala
 package sutd.compiler.simp.syntax
 
-import sutd.compiler.simp.syntax.Lexer.*
+import sutd.compiler.simp.syntax.Lexe@@r.*
 import sutd.compiler.simp.syntax.SrcLoc.*
 import sutd.compiler.simp.syntax.AST.*
 import sutd.compiler.simp.syntax.Parsec.*
@@ -177,13 +193,9 @@ object Parser {
       * @return
       */
 
-    def p_space:Parser[PEnv, LToken] = sat(ltoken => ltoken match {
-        case WhiteSpace(_, _) => true 
-        case _ => false
-
-    })
+    def p_space:Parser[PEnv, LToken] = item // fixme
     
-    def p_spaces:Parser[PEnv, List[LToken]] = many(p_space) 
+    def p_spaces:Parser[PEnv, List[LToken]] = many(item) // fixme
 
     /** Lab 1 Task 1.1 end */
 
@@ -192,73 +204,10 @@ object Parser {
       * Parsing an expression
       * Note that 
       *   E ::= E Op E | X | C | (E) contains left recursion
-      * 
+      * @return
       */
-
-    def p_exp: Parser[PEnv, Exp] = for {
-        first <- p_term 
-        rest <- p_exp_rest  
-    } yield buildExp(first, rest)
-
-    // Parse a term: X | C | (E)
-    def p_term: Parser[PEnv, Exp] = choice(
-        choice(p_var_exp)(p_const_exp)
-    )(p_paren_exp)
-
-    // Parse variable as expression
-    def p_var_exp: Parser[PEnv, Exp] = for {
-        v <- p_var
-    } yield VarExp(v)
-
-    // Parse constant as expression
-    def p_const_exp: Parser[PEnv, Exp] = for {
-        c <- p_const
-    } yield ConstExp(c)
-
-    // Parse parenthesized expression
-    def p_paren_exp: Parser[PEnv, Exp] = for {
-        _ <- p_lparen
-        _ <- p_spaces
-        e <- p_exp
-        _ <- p_spaces
-        _ <- p_rparen
-    } yield ParenExp(e)
-
-    // Parse the rest: (Op T)*
-    def p_exp_rest: Parser[PEnv, List[(LToken, Exp)]] = many(p_op_term)
-
-    // Parse one Op T pair
-    def p_op_term: Parser[PEnv, (LToken, Exp)] = for {
-        _ <- p_spaces
-        op <- p_op  // Parse operator
-        _ <- p_spaces
-        t <- p_term  // Parse term
-    } yield (op, t)
-
-    // Parse any operator
-    def p_op: Parser[PEnv, LToken] = 
-    choice(p_plus)(
-    choice(p_minus)(
-    choice(p_mult)(
-    choice(p_lthan)(
-    p_dequal))))
-
-    // Build the final expression tree from first term and rest
-    def buildExp(first: Exp, rest: List[(LToken, Exp)]): Exp = {
-    rest.foldLeft(first) { case (acc, (op, term)) =>
-        op match {
-            case PlusSign(_) => Plus(acc, term)
-            case MinusSign(_) => Minus(acc, term)
-            case AsterixSign(_) => Mult(acc, term)
-            case LThanSign(_) => LThan(acc, term)
-            case DEqSign(_) => DEqual(acc, term)
-            case _ => acc
-            }
-        }
-    }
+    def p_exp:Parser[PEnv, Exp] = empty(ConstExp(IntConst(1))) // fixme
     /** Lab 1 Task 1.2 end */
-
-    
     
     /**
       * Parsing operator symbols
@@ -403,3 +352,9 @@ object Parser {
 
 
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: `<none>`.

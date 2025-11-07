@@ -1,0 +1,44 @@
+[0m[[0m[33mwarn[0m] [0m[0mOption -Yresolve-term-conflict is deprecated: Use -Xresolve-term-conflict instead.[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/main/scala/sutd/compiler/simp/syntax/Parser.scala:202:8 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m202 |[0m        p_var.map(VarExp),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m        ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0mFound:    ([0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m  sutd.compiler.simp.syntax.Parsec.Parser[[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m    sutd.compiler.simp.syntax.Parser.PEnv, sutd.compiler.simp.syntax.AST.Exp],[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m  sutd.compiler.simp.syntax.Parsec.Parser[[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m    sutd.compiler.simp.syntax.Parser.PEnv, sutd.compiler.simp.syntax.AST.Exp],[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m  sutd.compiler.simp.syntax.Parsec.Parser[[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m    sutd.compiler.simp.syntax.Parser.PEnv, sutd.compiler.simp.syntax.AST.Exp][0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0mRequired: sutd.compiler.simp.syntax.Parsec.Parser[E, A][0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0mwhere:    A is a type variable[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m          E is a type variable[0m
+[0m[[0m[31merror[0m] [0m[0m[31m203 |[0m        p_const.map(ConstExp),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m204 |[0m        [33mfor[0m {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m205 |[0m        _ <- p_lparen[0m
+[0m[[0m[31merror[0m] [0m[0m[31m206 |[0m        e <- p_exp[0m
+[0m[[0m[31merror[0m] [0m[0m[31m207 |[0m        _ <- p_rparen[0m
+[0m[[0m[31merror[0m] [0m[0m[31m208 |[0m        } [33myield[0m e[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/main/scala/sutd/compiler/simp/syntax/Parser.scala:225:12 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m225 |[0m            p_plus.map(_  => ([36mx[0m: [35mExp[0m, [36my[0m: [35mExp[0m) => Plus(x, y)),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m            ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0mFound:    ([0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m  sutd.compiler.simp.syntax.Parsec.Parser[[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m    sutd.compiler.simp.syntax.Parser.PEnv, (sutd.compiler.simp.syntax.AST.Exp,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m    sutd.compiler.simp.syntax.AST.Exp) => sutd.compiler.simp.syntax.AST.Exp],[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m  sutd.compiler.simp.syntax.Parsec.Parser[[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m    sutd.compiler.simp.syntax.Parser.PEnv, (sutd.compiler.simp.syntax.AST.Exp,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m    sutd.compiler.simp.syntax.AST.Exp) => sutd.compiler.simp.syntax.AST.Exp][0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0mRequired: sutd.compiler.simp.syntax.Parsec.Parser[E, A][0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0mwhere:    A is a type variable[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m          E is a type variable[0m
+[0m[[0m[31merror[0m] [0m[0m[31m226 |[0m            p_minus.map(_ => (x: Exp, y: Exp) => Minus(x, y))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

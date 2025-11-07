@@ -1,0 +1,72 @@
+[0m[[0m[33mwarn[0m] [0m[0mOption -Yresolve-term-conflict is deprecated: Use -Xresolve-term-conflict instead.[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:3:33 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m3 |[0m[33mimport[0m sutd.compiler.simp.syntax._[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                 ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0m`_` is no longer supported for a wildcard import; use `*` instead[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0mThis construct can be rewritten automatically under -rewrite -source future-migration.[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E050] Type Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:10:21 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m10 |[0m    [33mval[0m [36mtoks[0m = Lexer.lex(src)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m               [33mmethod[0m [35mlex[0m in [33mobject[0m [35mLexer[0m does not take parameters[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:11:26 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m11 |[0m    [33mval[0m [36menv[0m = Parser.PEnv(lexInput(src))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                          ^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                          Not found: lexInput[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E050] Type Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:13:11 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m13 |[0m    Parser.p_exp(env) [33mmatch[0m {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m    ^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    [33mmethod[0m [35mp_exp[0m in [33mobject[0m [35mParser[0m does not take parameters[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:14:11 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m14 |[0m      [33mcase[0m Result.Success(e, _, _) =>[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m           ^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m           Not found: Result[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:17:11 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m17 |[0m      [33mcase[0m Result.Failure(msg, _, _) =>[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m           ^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m           Not found: Result[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E050] Type Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:24:21 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m24 |[0m    [33mval[0m [36mtoks[0m = Lexer.lex(src)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m               [33mmethod[0m [35mlex[0m in [33mobject[0m [35mLexer[0m does not take parameters[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:25:26 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m25 |[0m    [33mval[0m [36menv[0m = Parser.PEnv(lexInput(src))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                          ^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                          Not found: lexInput[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E050] Type Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:27:11 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m27 |[0m    Parser.p_stmts(env) [33mmatch[0m {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m    ^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    [33mmethod[0m [35mp_stmts[0m in [33mobject[0m [35mParser[0m does not take parameters[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:28:11 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m28 |[0m      [33mcase[0m Result.Success(stmts, _, _) =>[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m           ^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m           Not found: Result[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:30:21 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m30 |[0m        assert(stmts.nonEmpty)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m               value nonEmpty is not a member of Any[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /Users/aishwaryaiyer/Documents/GitHub/project/simp/src/test/scala/sutd/compiler/simp/TestParser2.scala:31:11 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m31 |[0m      [33mcase[0m Result.Failure(msg, _, _) =>[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m           ^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m           Not found: Result[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0m12 errors found[0m
