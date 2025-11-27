@@ -50,7 +50,14 @@ object SimpInt {
         c3 <- plusConst(c1,c2)
       } yield c3
       // Lab 2 Task 1.1
-      case _ => Left("TODO") // fixme
+
+      case VarExp(v) => dlt.get(v) match {
+        case Some(c) => Right(c)
+        case None    => Left(s"error: undefined variable ${v.name}")
+      }
+
+      case ParenExp(e1) => evalExp(dlt, e1)
+
       // Lab 2 Task 1.1 end
     }
 
@@ -72,7 +79,12 @@ object SimpInt {
       def eval(dlt:Delta, ss:List[A]):Either[ErrMsg, Delta] = ss match {
         case Nil => Right(dlt) 
         // Lab 2 Task 1.2 
-        case _ => Left("TODO") // fixme
+
+        case s :: rest => for {
+          dlt2 <- i.eval(dlt, s)
+          dlt3 <- eval(dlt2, rest)
+        } yield dlt3
+
         // Lab 2 Task 1.2 end
       }
     }
@@ -93,11 +105,20 @@ object SimpInt {
         } yield dlt_2
         case Ret(x) => Right(dlt)
         // Lab 2 Task 1.2 
-        case _ => Left("TODO") // fixme
+
+        case While(cond, body) => evalExp(dlt, cond).flatMap {
+          case IntConst(_) => Left("int expression found in while condition position.")
+          case BoolConst(false) => Right(dlt)
+          case BoolConst(true) => for {
+            dlt2 <- evalMany.eval(dlt, body)
+            dlt3 <- eval(dlt2, While(cond, body))
+          } yield dlt3
+
         // Lab 2 Task 1.2 end
       }
 
     }
+  }
 
     def eqConst(c1:Const, c2:Const):Either[ErrMsg, Const] = (c1,c2) match {
       case (IntConst(i1), IntConst(i2)) => Right(BoolConst(i1 == i2))
