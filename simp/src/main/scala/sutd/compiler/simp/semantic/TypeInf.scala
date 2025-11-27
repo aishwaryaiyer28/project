@@ -83,7 +83,16 @@ object TypeInf {
     given exTypeSubstitutable:Substitutable[ExType] = new Substitutable[ExType]{
         def applySubst(tysubst:TypeSubst)(ty:ExType):ExType = tysubst match {
             // Lab 2 Task 2.1
-            case _ => ty // fixme
+
+            case Empty => ty
+            case RevComp((name, rep), tail) =>
+                val afterTail = applySubst(tail)(ty)
+                afterTail match {
+                    case TypeVar(n) if n == name =>
+                        applySubst(tail)(rep)
+                    case _ => afterTail
+                }
+
             // Lab 2 Task 2.1 end
         }
     }
@@ -137,7 +146,21 @@ object TypeInf {
             }
             case Ret(x) => Set()
             // Lab 2 Task 2.3
-            case _ => Set() // fixme
+
+            case If(cond, th, el) =>
+                val (tCond, kCond) = inferExp(cond)
+                val kBool = Set((tCond, MonoType(BoolTy)))
+                val kThen = infList[Stmt].infer(th)
+                val kElse = infList[Stmt].infer(el)
+
+                kCond ++ kBool ++ kThen ++ kElse
+
+            case While(cond, b) =>
+                val (tCond, kCond) = inferExp(cond)
+                val kBool = Set((tCond, MonoType(BoolTy)))
+                val kBody = infList[Stmt].infer(b)
+                kCond ++ kBool ++ kBody
+
             // Lab 2 Task 2.3 end
             
         }
@@ -159,7 +182,49 @@ object TypeInf {
         }
         case ParenExp(e) => inferExp(e)
         // Lab 2 Task 2.3
-        case _ => (MonoType(IntTy), Set()) // fixme
+
+        case Plus(e1, e2) =>
+            val (t1, k1) = inferExp(e1)
+            val (t2, k2) = inferExp(e2)
+            val k = k1 ++ k2 ++ Set(
+                (t1, MonoType(IntTy)),
+                (t2, MonoType(IntTy))
+            )
+            (MonoType(IntTy), k)
+
+        case Minus(e1, e2) =>
+            val (t1, k1) = inferExp(e1)
+            val (t2, k2) = inferExp(e2)
+            val k = k1 ++ k2 ++ Set(
+                (t1, MonoType(IntTy)),
+                (t2, MonoType(IntTy))
+            )
+            (MonoType(IntTy), k)
+
+        case Mult(e1, e2) =>
+            val (t1, k1) = inferExp(e1)
+            val (t2, k2) = inferExp(e2)
+            val k = k1 ++ k2 ++ Set(
+                (t1, MonoType(IntTy)),
+                (t2, MonoType(IntTy))
+            )
+            (MonoType(IntTy), k)
+
+        case DEqual(e1, e2) =>
+            val (t1, k1) = inferExp(e1)
+            val (t2, k2) = inferExp(e2)
+            val k = k1 ++ k2 ++ Set((t1, t2))
+            (MonoType(BoolTy), k)
+
+        case LThan(e1, e2) =>
+            val (t1, k1) = inferExp(e1)
+            val (t2, k2) = inferExp(e2)
+            val k = k1 ++ k2 ++ Set(
+                (t1, MonoType(IntTy)),
+                (t2, MonoType(IntTy))
+            )
+            (MonoType(BoolTy), k)
+
         // Lab 2 Task 2.3 end        
     } 
 
@@ -176,7 +241,31 @@ object TypeInf {
     given extypesUnifiable:Unifiable[(ExType, ExType)] = new Unifiable[(ExType, ExType)] {
         def mgu(p:(ExType,ExType)):Either[String,TypeSubst] = p match {
             // Lab 2 Task 2.2
-            case (exTy1, exTy2) => Left(s"error: unable to unify ${p.toString}") // fixme
+
+            case (MonoType(IntTy), MonoType(IntTy))  => Right(TypeSubst.Empty)
+                case (MonoType(BoolTy), MonoType(BoolTy)) => Right(TypeSubst.Empty)
+                case (TypeVar(n), ty) => def occurs(name:String, t:ExType):Boolean = t match {
+                    case TypeVar(m) => m == name
+                    case MonoType(_) => false
+                }
+                if (occurs(n, ty)) {
+                    ty match {
+                        case TypeVar(m) if m == n => Right(TypeSubst.Empty)
+                        case _ => Left(s"occurs-check failed: $n occurs in $ty")
+                    }
+                } else Right(single(n, ty))
+                case (ty, TypeVar(n)) => def occurs(name:String, t:ExType):Boolean = t match {
+                    case TypeVar(m) => m == name
+                    case MonoType(_) => false
+                }
+                if (occurs(n, ty)) {
+                    ty match {
+                        case TypeVar(m) if m == n => Right(TypeSubst.Empty)
+                        case _ => Left(s"occurs-check failed: $n occurs in $ty")
+                    }
+                } else Right(single(n, ty))
+                case (a, b) => Left(s"error: unable to unify ${a} and ${b}")
+
             // Lab 2 Task 2.2 end
         }
     }
@@ -194,7 +283,14 @@ object TypeInf {
         def mgu(l:List[A]):Either[String, TypeSubst] = {
             l match {
                 // Lab 2 Task 2.2
-                case _ => Left("TODO") // fixme
+
+                case Nil => Right(TypeSubst.Empty)
+                case head :: tail => for {
+                    psi1 <- u.mgu(head)                      
+                    tailSubstituted = s.applySubst(psi1)(tail)
+                    psi2 <- mgu(tailSubstituted)            
+                } yield compose(psi2, psi1)
+                
                 // Lab 2 Task 2.2 end
             }
         }
